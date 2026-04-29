@@ -1,0 +1,2267 @@
+// 1. Our variable overrides — must come first so Bootstrap's !default assignments
+//    are skipped for any keys we define here.
+@import "variables";
+
+// 2. Bootstrap required functions (color helpers, math) — must precede variables
+//    because Bootstrap's _variables.scss calls these functions internally.
+@import "bootstrap/scss/functions";
+
+// 3. Bootstrap default variables and dark-mode variables
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+// 4. Bootstrap maps (color maps, breakpoint maps, etc.)
+@import "bootstrap/scss/maps";
+
+// 5. Mixins and utilities API setup
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// 6. Layout & components
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+
+// 7. Helpers and utility classes — must be last so utility classes can override
+//    component styles via the cascade.
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Morgan Stanley Custom Overrides
+// Applied after Bootstrap so we can reference compiled variables and mixins.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Warning always uses white text (Bootstrap's auto-contrast picks dark on orange)
+.btn-warning,
+.btn-outline-warning:hover,
+.btn-outline-warning:focus,
+.btn-outline-warning:active,
+.text-bg-warning {
+  color: $white !important;
+}
+
+// Font face declaration — browser uses Arial fallback when MS Sans is unavailable
+@font-face {
+  font-family: 'Morgan Stanley Sans';
+  src: local('Arial');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+// ─── DS Sidebar ───────────────────────────────────────────────────────────────
+
+.ds-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: $ms-gray-50;
+  border-right: 1px solid $ms-gray-200;
+  padding: 1.5rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: $ms-gray-300 transparent;
+
+  &__section {
+    margin-bottom: 0.25rem;
+  }
+
+  &__group-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ms-navy-800;
+    padding: 0.5rem 1.25rem 0.25rem;
+    margin-top: 0.75rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__link {
+    display: block;
+    font-size: 0.8125rem;
+    color: $ms-gray-700;
+    padding: 0.3rem 1.25rem;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+
+    &:hover {
+      color: $ms-navy-800;
+      background: $ms-gray-100;
+    }
+
+    &--sub {
+      padding-left: 2rem;
+      font-size: 0.75rem;
+      color: $ms-gray-600;
+
+      &:hover {
+        color: $ms-navy-800;
+        border-left-color: $ms-blue-400;
+      }
+    }
+  }
+}
+
+// ─── DS showcase utilities ────────────────────────────────────────────────────
+
+// Atomic design level labels
+.ds-level-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ms-gray-600;
+  margin-bottom: 0.5rem;
+}
+
+.ds-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid $ms-gray-200;
+
+  &:first-of-type {
+    border-top: none;
+  }
+}
+
+.ds-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $ms-navy-800;
+  margin-bottom: 0.25rem;
+}
+
+.ds-section-desc {
+  font-size: 0.875rem;
+  color: $ms-gray-600;
+  margin-bottom: 2rem;
+  max-width: 48rem;
+}
+
+.ds-subsection {
+  margin-bottom: 2.5rem;
+
+  h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $ms-gray-200;
+  }
+}
+
+// ─── Color swatch ─────────────────────────────────────────────────────────────
+
+.ds-swatch {
+  border-radius: $border-radius;
+  overflow: hidden;
+  border: 1px solid rgba($ms-navy-800, 0.08);
+
+  &__block {
+    height: 3rem;
+  }
+
+  &__info {
+    padding: 0.5rem 0.75rem;
+    background: $white;
+
+    .ds-swatch__name {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: $ms-navy-800;
+      line-height: 1.2;
+    }
+
+    .ds-swatch__hex {
+      font-size: 0.6875rem;
+      color: $ms-gray-600;
+      font-family: $font-family-monospace;
+    }
+  }
+}
+
+// ─── Type specimen ────────────────────────────────────────────────────────────
+
+.ds-type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $ms-gray-100;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__meta {
+    min-width: 7rem;
+    font-size: 0.6875rem;
+    color: $ms-gray-600;
+    font-family: $font-family-monospace;
+  }
+
+  &__sample {
+    color: $ms-navy-800;
+    line-height: 1.2;
+  }
+}
+
+// ─── Navbar overrides ─────────────────────────────────────────────────────────
+
+.ms-navbar {
+  background-color: $ms-navy-800;
+  border-bottom: 3px solid $ms-blue-400;
+
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: $white;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: rgba($white, 0.8);
+    padding: 0 1rem;
+    transition: color 0.15s ease;
+
+    &:hover,
+    &.active {
+      color: $white;
+    }
+  }
+}
+
+// ─── Hero banner ──────────────────────────────────────────────────────────────
+
+.ms-hero {
+  background-color: $ms-navy-800;
+  color: $white;
+  padding: 5rem 0;
+
+  &__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $ms-blue-400;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: $white;
+    margin-bottom: 1.5rem;
+  }
+
+  &__body {
+    font-size: 1.125rem;
+    color: rgba($white, 0.75);
+    max-width: 36rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+}
+
+// ─── Stat card ────────────────────────────────────────────────────────────────
+
+.ms-stat-card {
+  padding: 1.5rem;
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-top: 3px solid $ms-blue-400;
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    margin-bottom: 0.5rem;
+  }
+
+  &__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $ms-navy-800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  &__delta {
+    font-size: 0.8125rem;
+    font-weight: 600;
+
+    &--up   { color: $ms-green; }
+    &--down { color: $ms-red-dark; }
+    &--flat { color: $ms-gray-600; }
+  }
+
+  &__sub {
+    font-size: 0.75rem;
+    color: $ms-gray-600;
+    margin-top: 0.25rem;
+  }
+}
+
+// ─── Pod Manager Dashboard ────────────────────────────────────────────────────
+
+.ms-pod-dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $ms-gray-50;
+
+  &__main {
+    flex: 1;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.ms-pod-section {
+  margin-bottom: 1.75rem;
+
+  &__heading {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    margin-bottom: 0.75rem;
+  }
+}
+
+// ─── Dashboard Header ─────────────────────────────────────────────────────────
+
+.ms-pod-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: $ms-navy-800;
+  border-bottom: 3px solid $ms-blue-400;
+  padding: 0.625rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 1.25rem;
+    background: rgba($white, 0.2);
+    flex-shrink: 0;
+  }
+
+  &__product {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: $white;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+
+  &__pod-select {
+    background-color: rgba($white, 0.08);
+    border-color: rgba($white, 0.2);
+    color: $white;
+    font-size: 0.8125rem;
+    max-width: 200px;
+    cursor: pointer;
+
+    &:focus {
+      background-color: rgba($white, 0.12);
+      border-color: $ms-blue-400;
+      box-shadow: 0 0 0 0.15rem rgba($ms-blue-400, 0.35);
+      color: $white;
+    }
+
+    option {
+      background: $ms-navy-800;
+      color: $white;
+    }
+  }
+
+  &__spacer {
+    flex: 1;
+  }
+
+  &__refresh {
+    font-size: 0.6875rem;
+    color: rgba($white, 0.5);
+    white-space: nowrap;
+
+    strong {
+      color: rgba($white, 0.75);
+      font-weight: 600;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  &__icon-btn {
+    background: none;
+    border: none;
+    color: rgba($white, 0.7);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: color 0.15s, background 0.15s;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+      color: $white;
+      background: rgba($white, 0.1);
+    }
+  }
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: $ms-navy-700;
+    border: 1.5px solid rgba($white, 0.3);
+    color: $white;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    user-select: none;
+  }
+}
+
+// ─── Filter Bar ───────────────────────────────────────────────────────────────
+
+.ms-pod-filter {
+  background: $white;
+  border-bottom: 1px solid $ms-gray-200;
+  padding: 0.875rem 0;
+  margin-bottom: 1.5rem;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    &--primary {
+      margin-bottom: 0.625rem;
+    }
+  }
+
+  &__label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    white-space: nowrap;
+    margin-right: 0.25rem;
+  }
+
+  &__pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: $border-radius-pill;
+    transition: all 0.15s;
+  }
+
+  &__select {
+    font-size: 0.75rem;
+    max-width: 160px;
+    padding: 0.25rem 1.75rem 0.25rem 0.5rem;
+    height: auto;
+  }
+
+  &__clear {
+    font-size: 0.75rem;
+    color: $ms-gray-600;
+    text-decoration: none;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+
+    &:hover {
+      color: $ms-navy-800;
+      text-decoration: underline;
+    }
+  }
+
+  &__active-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: $ms-blue-electric;
+    color: $white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+  }
+}
+
+// ─── KPI Scorecards ───────────────────────────────────────────────────────────
+
+.ms-pod-kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+
+  &__tile {
+    background: $white;
+    border: 1px solid $ms-gray-200;
+    border-top: 3px solid $ms-gray-300;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    transition: box-shadow 0.15s, border-top-color 0.15s;
+
+    &:hover {
+      box-shadow: $box-shadow-sm;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $ms-blue-400;
+      outline-offset: 2px;
+    }
+
+    &--up   { border-top-color: $ms-green; }
+    &--down { border-top-color: $ms-red-dark; }
+    &--flat { border-top-color: $ms-blue-400; }
+  }
+
+  &__label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    margin-bottom: 0.5rem;
+  }
+
+  &__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $ms-navy-800;
+    line-height: 1;
+    margin-bottom: 0.375rem;
+  }
+
+  &__delta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+
+    &--up   { color: $ms-green; }
+    &--down { color: $ms-red-dark; }
+    &--flat { color: $ms-gray-600; }
+  }
+
+  &__context {
+    font-size: 0.6875rem;
+    color: $ms-gray-600;
+    font-style: italic;
+    line-height: 1.3;
+  }
+}
+
+// ─── Pod Summary Panel ────────────────────────────────────────────────────────
+
+.ms-pod-summary {
+  &__col {
+    background: $white;
+    border: 1px solid $ms-gray-200;
+    padding: 1.5rem;
+    height: 100%;
+  }
+
+  &__title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    border-bottom: 1px solid $ms-gray-200;
+    padding-bottom: 0.625rem;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    font-size: 0.875rem;
+    color: $ms-navy-800;
+    padding: 0.5rem 0 0.5rem 0.75rem;
+    border-bottom: 1px solid $ms-gray-100;
+    border-left: 3px solid $ms-gray-200;
+    margin-bottom: 0.375rem;
+    line-height: 1.4;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    &--high   { border-left-color: $ms-red-dark; }
+    &--medium { border-left-color: $ms-orange; }
+    &--low    { border-left-color: $ms-green; }
+  }
+
+  &__item-priority {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.125rem;
+
+    &--high   { color: $ms-red-dark; }
+    &--medium { color: $ms-orange; }
+    &--low    { color: $ms-green; }
+  }
+
+  &__empty {
+    font-size: 0.875rem;
+    color: $ms-gray-600;
+    font-style: italic;
+    padding: 0.5rem 0;
+  }
+}
+
+// ─── Pod Health Widget ────────────────────────────────────────────────────────
+
+.ms-pod-health {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-top: 4px solid $ms-gray-300;
+  padding: 1.5rem;
+  height: 100%;
+
+  &--normal    { border-top-color: $ms-green; }
+  &--monitor   { border-top-color: $ms-blue-400; }
+  &--elevated  { border-top-color: $ms-orange; }
+  &--high-risk { border-top-color: $ms-red-dark; }
+
+  &__state-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__state-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: $border-radius-pill;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: $white;
+
+    &--normal    { background: $ms-green; }
+    &--monitor   { background: $ms-blue-400; }
+    &--elevated  { background: $ms-orange; }
+    &--high-risk { background: $ms-red-dark; }
+  }
+
+  &__signals-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    margin-bottom: 0.625rem;
+  }
+
+  &__signal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+  }
+
+  &__signal {
+    font-size: 0.8125rem;
+    color: $ms-gray-700;
+    padding: 0.375rem 0 0.375rem 0.75rem;
+    border-left: 2px solid $ms-gray-300;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__watch-next {
+    background: $ms-gray-50;
+    border: 1px solid $ms-gray-200;
+    border-left: 3px solid $ms-orange;
+    padding: 0.875rem 1rem;
+  }
+
+  &__watch-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $ms-orange;
+    margin-bottom: 0.375rem;
+  }
+
+  &__watch-text {
+    font-size: 0.8125rem;
+    color: $ms-navy-800;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  &__empty {
+    font-size: 0.875rem;
+    color: $ms-gray-600;
+    font-style: italic;
+  }
+}
+
+// ─── Workflow Risk Widget ─────────────────────────────────────────────────────
+
+.ms-pod-risk {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  padding: 1.5rem;
+  height: 100%;
+
+  &__title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    border-bottom: 1px solid $ms-gray-200;
+    padding-bottom: 0.625rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__row {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid $ms-gray-100;
+    cursor: pointer;
+    transition: background 0.12s;
+
+    &:last-child { border-bottom: none; }
+
+    &:hover {
+      background: $ms-gray-50;
+    }
+  }
+
+  &__row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.375rem;
+    gap: 0.5rem;
+  }
+
+  &__name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $ms-navy-800;
+    flex: 1;
+  }
+
+  &__type {
+    font-size: 0.6875rem;
+    color: $ms-gray-600;
+    margin-bottom: 0.375rem;
+  }
+
+  &__badge {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: $border-radius-pill;
+    white-space: nowrap;
+    color: $white;
+
+    &--low      { background: $ms-green; }
+    &--moderate { background: $ms-blue-600; }
+    &--rising   { background: $ms-orange; }
+    &--high     { background: $ms-red-dark; }
+  }
+
+  &__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__bullet {
+    font-size: 0.75rem;
+    color: $ms-gray-600;
+    padding: 0.125rem 0 0.125rem 0.875rem;
+    position: relative;
+    line-height: 1.4;
+
+    &::before {
+      content: '·';
+      position: absolute;
+      left: 0.25rem;
+      color: $ms-gray-400;
+    }
+  }
+}
+
+// ─── Priority Work Queue ──────────────────────────────────────────────────────
+
+.ms-pod-queue {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  padding: 1.5rem;
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1rem;
+  }
+
+  &__toolbar-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+  }
+
+  &__toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__count {
+    font-size: 0.8125rem;
+    color: $ms-gray-600;
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+  }
+
+  &__table {
+    font-size: 0.8125rem;
+    min-width: 700px;
+
+    th {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: $ms-gray-600;
+      white-space: nowrap;
+      border-bottom-width: 1px;
+      padding: 0.5rem 0.75rem;
+    }
+
+    td {
+      vertical-align: middle;
+      padding: 0.625rem 0.75rem;
+      color: $ms-navy-800;
+    }
+
+    tbody tr {
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+  }
+
+  &__priority {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $ms-navy-800;
+    color: $white;
+    font-size: 0.625rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  &__risk-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.375rem;
+    vertical-align: middle;
+    flex-shrink: 0;
+
+    &--low    { background: $ms-green; }
+    &--medium { background: $ms-orange; }
+    &--high   { background: $ms-red-dark; }
+  }
+
+  &__unassigned {
+    font-style: italic;
+    color: $ms-gray-400;
+  }
+
+  &__load-more {
+    margin-top: 1rem;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $ms-gray-600;
+    font-style: italic;
+    font-size: 0.875rem;
+  }
+}
+
+// ─── Workload Balance ─────────────────────────────────────────────────────────
+
+.ms-pod-balance {
+  &__heading {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ms-gray-600;
+    margin-bottom: 0.875rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    gap: 0.875rem;
+  }
+
+  &__card {
+    background: $white;
+    border: 1px solid $ms-gray-200;
+    border-left: 3px solid $ms-gray-300;
+    padding: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+
+    &:hover {
+      box-shadow: $box-shadow-sm;
+    }
+
+    &--available  { border-left-color: $ms-green; }
+    &--balanced   { border-left-color: $ms-blue-400; }
+    &--overloaded { border-left-color: $ms-red-dark; }
+  }
+
+  &__name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $ms-navy-800;
+    margin-bottom: 0.125rem;
+  }
+
+  &__role {
+    font-size: 0.6875rem;
+    color: $ms-gray-600;
+    margin-bottom: 0.75rem;
+  }
+
+  &__count {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $ms-navy-800;
+    line-height: 1;
+    margin-bottom: 0.125rem;
+  }
+
+  &__count-label {
+    font-size: 0.6875rem;
+    color: $ms-gray-600;
+    margin-bottom: 0.625rem;
+  }
+
+  &__badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: $border-radius-pill;
+    color: $white;
+
+    &--available  { background: $ms-green; }
+    &--balanced   { background: $ms-blue-400; }
+    &--overloaded { background: $ms-red-dark; }
+  }
+
+  &__empty {
+    font-size: 0.875rem;
+    color: $ms-gray-600;
+    font-style: italic;
+  }
+}
+
+
+// ─── DS Dashboard Version Cards ───────────────────────────────────────────────
+.ds-dashboard-card {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-top: 3px solid $ms-blue-electric;
+  border-radius: $border-radius-lg;
+  padding: 1.5rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &--v2 {
+    border-top-color: $ms-blue-400;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.625rem;
+    border-radius: $border-radius-pill;
+    background: rgba($ms-blue-electric, 0.1);
+    color: $ms-blue-electric;
+    width: fit-content;
+
+    &--v2 {
+      background: rgba($ms-blue-400, 0.12);
+      color: $ms-blue-400;
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $ms-navy-800;
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: 0.875rem;
+    color: $ms-gray-600;
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: $ms-gray-400;
+    margin-bottom: 0.25rem;
+  }
+}
+
+// ─── V2 Filter Bar ────────────────────────────────────────────────────────────
+.ms-v2-filter {
+  background: $white;
+  border-bottom: 1px solid $ms-gray-200;
+  padding: 0.75rem 1.5rem 0.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--selects { flex-wrap: wrap; }
+
+    &--period {
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+
+  &__group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 240px;
+    max-width: 320px;
+  }
+
+  &__label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: $ms-gray-600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  &__period-pills {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+
+  &__pill {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.3125rem 0.875rem;
+    border-radius: $border-radius-pill;
+    border: 1px solid $ms-gray-300;
+    background: $white;
+    color: $ms-gray-700;
+    cursor: pointer;
+    transition: all 0.12s;
+    line-height: 1.4;
+
+    &:hover:not(.ms-v2-filter__pill--active) {
+      border-color: $ms-gray-400;
+      background: $ms-gray-50;
+    }
+
+    &--active {
+      background: $ms-blue-electric;
+      border-color: $ms-blue-electric;
+      color: $white;
+    }
+  }
+
+  &__comparison-btn {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.3125rem 0.875rem;
+    border-radius: $border-radius;
+    border: 1.5px solid $ms-navy-800;
+    background: $white;
+    color: $ms-navy-800;
+    cursor: pointer;
+    transition: all 0.12s;
+    white-space: nowrap;
+
+    &:hover {
+      background: $ms-gray-50;
+    }
+
+    &--active {
+      background: $ms-navy-800;
+      color: $white;
+    }
+  }
+}
+
+// ─── Tasks by Duration Widget ─────────────────────────────────────────────────
+.ms-duration-widget {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1rem 1.25rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-700;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__info {
+    font-size: 0.75rem;
+    color: $ms-gray-400;
+    cursor: help;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  &__dropdown {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid $ms-gray-300;
+    border-radius: $border-radius;
+    color: $ms-gray-700;
+    background: $white;
+    cursor: pointer;
+    outline: none;
+
+    &:focus { border-color: $ms-blue-400; }
+  }
+
+  &__body {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  &__breakdown {
+    flex: 0 0 36%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding-top: 0.25rem;
+  }
+
+  &__chart-col {
+    flex: 1;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  &__band-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+  }
+
+  &__band-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  &__band-count {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $ms-gray-800;
+  }
+
+  &__bar-wrap {
+    height: 5px;
+    background: $ms-gray-200;
+    border-radius: $border-radius-pill;
+    overflow: hidden;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    border-radius: $border-radius-pill;
+    transition: width 0.4s ease;
+  }
+}
+
+// ─── Task Category Trends ─────────────────────────────────────────────────────
+.ms-task-trend {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1rem 1.25rem 0.5rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-700;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__info {
+    font-size: 0.75rem;
+    color: $ms-gray-400;
+    cursor: help;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  &__toggle-label {
+    font-size: 0.75rem;
+    color: $ms-gray-600;
+  }
+}
+
+// ─── Open Tasks Per Date ──────────────────────────────────────────────────────
+.ms-tasks-date {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1rem 1.25rem 0.5rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-700;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__info {
+    font-size: 0.75rem;
+    color: $ms-gray-400;
+    cursor: help;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  &__toggle-label {
+    font-size: 0.75rem;
+    color: $ms-gray-600;
+  }
+}
+
+// ─── Top Task Type Table ──────────────────────────────────────────────────────
+.ms-top-task-table {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1rem 1.25rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.875rem;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-700;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__info {
+    font-size: 0.75rem;
+    color: $ms-gray-400;
+    cursor: help;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  &__view-all {
+    font-size: 0.75rem;
+    color: $ms-blue-400;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+  }
+
+  &__th {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $ms-gray-600;
+    padding: 0 0.5rem 0.5rem 0;
+    border-bottom: 1px solid $ms-gray-200;
+    white-space: nowrap;
+
+    &--num { text-align: right; }
+  }
+
+  &__row {
+    border-bottom: 1px solid $ms-gray-100;
+
+    td { padding: 0.5rem 0.5rem 0.5rem 0; vertical-align: middle; }
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__rank { color: $ms-gray-600; font-size: 0.75rem; font-weight: 600; }
+
+  &__name { font-weight: 500; color: $ms-gray-800; }
+
+  &__count { text-align: right; font-weight: 700; color: $ms-navy-800; }
+
+  &__overdue { text-align: right; color: $ms-gray-700; }
+
+  &__trend {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    &--up   { color: $ms-green; }
+    &--down { color: $ms-red-dark; }
+  }
+}
+
+// ─── Pod Workload Distribution ────────────────────────────────────────────────
+.ms-workload-dist {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1rem 1.25rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.875rem;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-700;
+  }
+
+  &__view-all {
+    font-size: 0.75rem;
+    color: $ms-blue-400;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &__body {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  &__chart-col {
+    flex: 0 0 230px;
+    position: relative;
+  }
+
+  &__donut-wrap {
+    position: relative;
+  }
+
+  &__center-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  &__center-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $ms-navy-800;
+    line-height: 1;
+  }
+
+  &__center-sub {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-600;
+    margin-top: 0.125rem;
+  }
+
+  &__table-col { flex: 1; min-width: 0; }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+  }
+
+  &__th {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $ms-gray-600;
+    padding: 0 0.5rem 0.5rem 0;
+    border-bottom: 1px solid $ms-gray-200;
+    white-space: nowrap;
+
+    &--num { text-align: right; }
+  }
+
+  &__member {
+    border-bottom: 1px solid $ms-gray-100;
+
+    td { padding: 0.4375rem 0.5rem 0.4375rem 0; vertical-align: middle; }
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__member-name {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-weight: 500;
+    color: $ms-gray-800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__swatch {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &__num { text-align: right; font-weight: 700; color: $ms-navy-800; }
+
+  &__share { text-align: right; color: $ms-gray-600; }
+
+  &__overdue-count { text-align: right; color: $ms-red-dark; font-weight: 600; }
+}
+
+// ─── Top Requestors ───────────────────────────────────────────────────────────
+.ms-top-requestors {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1rem 1.25rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.875rem;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-700;
+  }
+
+  &__view-all {
+    font-size: 0.75rem;
+    color: $ms-blue-400;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+  }
+
+  &__th {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $ms-gray-600;
+    padding: 0 0.5rem 0.5rem 0;
+    border-bottom: 1px solid $ms-gray-200;
+
+    &--num { text-align: right; }
+  }
+
+  &__row {
+    border-bottom: 1px solid $ms-gray-100;
+
+    td { padding: 0.5rem 0.5rem 0.5rem 0; vertical-align: middle; }
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__rank { color: $ms-blue-electric; font-size: 0.75rem; font-weight: 700; }
+
+  &__name { font-weight: 500; color: $ms-gray-800; }
+
+  &__count { text-align: right; font-weight: 700; color: $ms-navy-800; }
+}
+
+// ─── V2 Work Queue ────────────────────────────────────────────────────────────
+.ms-v2-queue {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  box-shadow: $card-box-shadow;
+  overflow: hidden;
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid $ms-gray-200;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: $ms-gray-700;
+  }
+
+  &__count { font-weight: 600; color: $ms-navy-800; }
+
+  &__toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__table-wrap { overflow-x: auto; }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+  }
+
+  &__th {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $ms-gray-600;
+    padding: 0.625rem 0.75rem;
+    background: $ms-gray-50;
+    border-bottom: 1px solid $ms-gray-200;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  &__row {
+    border-bottom: 1px solid $ms-gray-100;
+    cursor: pointer;
+    transition: background 0.1s;
+
+    &:hover { background: $ms-gray-50; }
+
+    td { padding: 0.5625rem 0.75rem; vertical-align: middle; }
+  }
+
+  &__risk-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.5rem;
+    border-radius: $border-radius-sm;
+    color: $white;
+
+    &--high   { background: $ms-red-dark; }
+    &--medium { background: $ms-orange; color: $ms-gray-800; }
+    &--low    { background: $ms-blue-400; }
+  }
+
+  &__event-id { font-family: monospace; font-size: 0.75rem; color: $ms-gray-600; }
+
+  &__task-type { font-weight: 500; color: $ms-gray-800; }
+
+  &__owner-null { font-style: italic; color: $ms-gray-400; }
+
+  &__age { color: $ms-gray-700; }
+
+  &__date { color: $ms-gray-600; font-size: 0.75rem; white-space: nowrap; }
+
+  &__load-more {
+    width: 100%;
+    padding: 0.75rem;
+    text-align: center;
+    background: $ms-gray-50;
+    border: none;
+    border-top: 1px solid $ms-gray-200;
+    font-size: 0.8125rem;
+    color: $ms-blue-electric;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.1s;
+
+    &:hover { background: $ms-gray-100; }
+  }
+}
+
+// ─── Top Workflow Types Widget ────────────────────────────────────────────────
+.ms-pod-top-workflows {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1rem 1.25rem 1.125rem;
+  box-shadow: $card-box-shadow;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.125rem;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ms-gray-700;
+  }
+
+  &__range {
+    font-size: 0.6875rem;
+    color: $ms-gray-600;
+    background: $ms-gray-100;
+    border-radius: $border-radius-pill;
+    padding: 0.1rem 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 0.6875rem;
+    color: $ms-gray-600;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  &__rank {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: $ms-blue-electric;
+    min-width: 1.5rem;
+    padding-top: 0.125rem;
+    letter-spacing: 0.02em;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  &__name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $ms-gray-800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__count {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $ms-navy-800;
+    flex-shrink: 0;
+  }
+
+  &__bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  &__bar-track {
+    flex: 1;
+    height: 5px;
+    background: $ms-gray-200;
+    border-radius: $border-radius-pill;
+    overflow: hidden;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    background: $ms-blue-electric;
+    border-radius: $border-radius-pill;
+    transition: width 0.4s ease;
+  }
+
+  &__delta {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    white-space: nowrap;
+
+    &--up   { color: $ms-green; }
+    &--down { color: $ms-red-dark; }
+    &--flat { color: $ms-gray-600; }
+  }
+}
+
+// ─── Multi-Select ──────────────────────────────────────────────────────────
+.ms-multiselect {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $ms-gray-700;
+  }
+
+  // ── Control (chip container + trigger) ──────────────────────────────────
+  &__control {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.375rem;
+    min-height: 2.375rem;
+    padding: 0.3125rem 0.5rem 0.3125rem 0.625rem;
+    background: $white;
+    border: 1px solid $ms-gray-400;
+    border-radius: $border-radius;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:focus,
+    &:focus-within {
+      border-color: $ms-blue-400;
+      box-shadow: 0 0 0 3px rgba($ms-blue-400, 0.18);
+    }
+
+    .ms-multiselect--open & {
+      border-color: $ms-blue-400;
+      box-shadow: 0 0 0 3px rgba($ms-blue-400, 0.18);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .ms-multiselect--error & {
+      border-color: $ms-red-dark;
+      &:focus, &:focus-within {
+        box-shadow: 0 0 0 3px rgba($ms-red-dark, 0.18);
+      }
+    }
+
+    .ms-multiselect--disabled & {
+      background: $ms-gray-50;
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+  }
+
+  // ── Chips ────────────────────────────────────────────────────────────────
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__placeholder {
+    font-size: 0.875rem;
+    color: $ms-gray-400;
+    line-height: 1.625rem;
+    user-select: none;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba($ms-blue-electric, 0.08);
+    color: $ms-blue-electric;
+    border: 1px solid rgba($ms-blue-electric, 0.25);
+    border-radius: $border-radius-xl;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.1875rem 0.5rem 0.1875rem 0.625rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__chip-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    background: rgba($ms-blue-electric, 0.12);
+    border: none;
+    border-radius: 50%;
+    color: $ms-blue-electric;
+    font-size: 0.875rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background 0.12s;
+
+    &:hover {
+      background: rgba($ms-blue-electric, 0.25);
+    }
+  }
+
+  // ── Right-side actions (clear + chevron) ─────────────────────────────────
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding-top: 0.1875rem;
+    flex-shrink: 0;
+  }
+
+  &__clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    background: $ms-gray-300;
+    border: none;
+    border-radius: 50%;
+    color: $ms-gray-700;
+    font-size: 0.9375rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.12s;
+
+    &:hover {
+      background: $ms-gray-400;
+      color: $white;
+    }
+  }
+
+  &__chevron {
+    color: $ms-gray-600;
+    display: flex;
+    align-items: center;
+    transition: transform 0.18s ease;
+
+    &--up {
+      transform: rotate(180deg);
+    }
+  }
+
+  // ── Dropdown ─────────────────────────────────────────────────────────────
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    background: $white;
+    border: 1px solid $ms-blue-400;
+    border-top: 0;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    box-shadow: 0 4px 12px rgba($ms-navy-800, 0.12);
+    overflow: hidden;
+  }
+
+  // ── Search ───────────────────────────────────────────────────────────────
+  &__search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid $ms-gray-200;
+  }
+
+  &__search-icon {
+    color: $ms-gray-400;
+    flex-shrink: 0;
+  }
+
+  &__search {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.8125rem;
+    color: $ms-gray-800;
+    background: transparent;
+
+    &::placeholder {
+      color: $ms-gray-400;
+    }
+  }
+
+  // ── Option list ──────────────────────────────────────────────────────────
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0;
+    max-height: 220px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar { width: 4px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb { background: $ms-gray-300; border-radius: 2px; }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: $ms-gray-800;
+    cursor: pointer;
+    transition: background 0.1s;
+    user-select: none;
+
+    &:hover {
+      background: $ms-gray-50;
+    }
+
+    &--checked {
+      color: $ms-blue-electric;
+
+      &:hover {
+        background: rgba($ms-blue-electric, 0.05);
+      }
+    }
+  }
+
+  &__checkbox {
+    width: 1rem;
+    height: 1rem;
+    border: 1.5px solid $ms-gray-400;
+    border-radius: $border-radius-sm;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.12s, background 0.12s;
+
+    .ms-multiselect__option--checked & {
+      border-color: $ms-blue-electric;
+      background: $ms-blue-electric;
+    }
+  }
+
+  &__option-label {
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  &__empty {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8125rem;
+    color: $ms-gray-400;
+    font-style: italic;
+  }
+
+  // ── Footer ───────────────────────────────────────────────────────────────
+  &__footer {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    color: $ms-gray-600;
+    border-top: 1px solid $ms-gray-200;
+    background: $ms-gray-50;
+  }
+
+  // ── Help / error feedback ─────────────────────────────────────────────
+  &__feedback {
+    font-size: 0.8125rem;
+    color: $ms-gray-600;
+    margin: 0;
+
+    &--error {
+      color: $ms-red-dark;
+    }
+  }
+}
+
+// ─── Chart Components ──────────────────────────────────────────────────────
+.ms-chart {
+  background: $white;
+  border: 1px solid $ms-gray-200;
+  border-radius: $border-radius;
+  padding: 1.25rem 1.5rem 1rem;
+  box-shadow: $box-shadow-sm;
+
+  &__title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $ms-gray-700;
+    margin-bottom: 1rem;
+  }
+
+  &__inner {
+    width: 100%;
+  }
+}
