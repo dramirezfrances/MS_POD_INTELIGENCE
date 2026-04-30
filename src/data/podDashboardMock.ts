@@ -7,7 +7,7 @@ export interface Pod {
   label: string
 }
 
-export type DeltaDirection = 'up' | 'down' | 'flat'
+export type DeltaDirection = 'up' | 'down' | 'flat' | 'neutral'
 
 export interface KpiTile {
   id: string

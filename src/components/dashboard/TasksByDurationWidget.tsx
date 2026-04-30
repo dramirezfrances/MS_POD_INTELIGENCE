@@ -11,7 +11,6 @@ interface TasksByDurationWidgetProps {
 
 export function TasksByDurationWidget({ bands, workflowOptions = [] }: TasksByDurationWidgetProps) {
   const [workflow, setWorkflow] = useState('all')
-  const max = Math.max(...bands.map((b) => b.count), 1)
 
   const donutData = bands.map((b) => ({ label: b.label, value: b.count, color: b.color }))
 
@@ -36,34 +35,28 @@ export function TasksByDurationWidget({ bands, workflowOptions = [] }: TasksByDu
       </div>
 
       <div className="ms-duration-widget__body">
-        {/* Left: breakdown list */}
+        {/* Left: mini KPI tiles — act as chart legend */}
         <div className="ms-duration-widget__breakdown">
           {bands.map((band) => (
-            <div key={band.label} className="ms-duration-widget__band">
-              <div className="ms-duration-widget__band-header">
-                <span className="ms-duration-widget__band-label" style={{ color: band.color }}>
-                  {band.label}
-                </span>
-                <span className="ms-duration-widget__band-count">{band.count}</span>
-              </div>
-              <div className="ms-duration-widget__bar-wrap">
-                <div
-                  className="ms-duration-widget__bar-fill"
-                  style={{ width: `${Math.round((band.count / max) * 100)}%`, background: band.color }}
-                  role="presentation"
-                />
-              </div>
+            <div
+              key={band.label}
+              className="ms-duration-widget__tile"
+              style={{ borderTopColor: band.color }}
+            >
+              <span className="ms-duration-widget__tile-label">{band.label}</span>
+              <span className="ms-duration-widget__tile-count">{band.count}</span>
             </div>
           ))}
         </div>
 
-        {/* Right: donut chart */}
+        {/* Right: donut chart (legend suppressed — left tiles serve as legend) */}
         <div className="ms-duration-widget__chart-col">
           <DonutChart
             data={donutData}
-            height={200}
-            innerRadius={55}
-            outerRadius={85}
+            height={260}
+            innerRadius={70}
+            outerRadius={110}
+            hideLegend
           />
         </div>
       </div>

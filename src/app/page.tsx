@@ -97,6 +97,79 @@ export default function DesignSystemPage() {
         <main style={{ flex: 1, overflowY: 'auto', padding: '0 2rem 4rem' }}>
 
           {/* ══════════════════════════════════════════════════════════════
+              LEVEL 5 — Dashboard Pages
+          ══════════════════════════════════════════════════════════════ */}
+          <section id="dashboard-pages" className="ds-section">
+            <p className="ds-level-label">Level 5</p>
+            <h2 className="ds-section-title">Dashboard Pages</h2>
+            <p className="ds-section-desc">
+              Fully assembled operational dashboards composed from organisms, molecules, and atoms —
+              delivering rule-based pod intelligence for operations managers.
+            </p>
+
+            {/* Dashboard version cards */}
+            <div className="row g-4 mb-4">
+              <div className="col-md-6">
+                <div className="ds-dashboard-card">
+                  <div className="ds-dashboard-card__badge">V1</div>
+                  <h3 className="ds-dashboard-card__title">Pod Manager Dashboard V1</h3>
+                  <p className="ds-dashboard-card__desc">
+                    Operational command center for pod managers. Covers sticky header, filter bar,
+                    KPI scorecards, pod summary, pod health, workflow risk, priority work queue,
+                    and workload balance. Rule-based signals, read-only view.
+                  </p>
+                  <div className="ds-dashboard-card__meta">
+                    <span>8 sections</span>
+                    <span>·</span>
+                    <span>18 mock work items</span>
+                    <span>·</span>
+                    <span>7 pod members</span>
+                  </div>
+                  <a
+                    href="/frontend-design/POD_Manager_Dashboard_V1"
+                    className="btn btn-primary btn-sm"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open V1 ↗
+                  </a>
+                </div>
+              </div>
+
+              <div className="col-md-6">
+                <div className="ds-dashboard-card ds-dashboard-card--v2">
+                  <div className="ds-dashboard-card__badge ds-dashboard-card__badge--v2">V2</div>
+                  <h3 className="ds-dashboard-card__title">Pod Manager Dashboard V2</h3>
+                  <p className="ds-dashboard-card__desc">
+                    Analytics-first redesign based on the Figma V2 spec. Adds tasks by duration
+                    flag, category trend lines, open tasks per date, top task type table, pod
+                    workload distribution, and top requestors — with region/pod multi-select filters.
+                  </p>
+                  <div className="ds-dashboard-card__meta">
+                    <span>9 sections</span>
+                    <span>·</span>
+                    <span>7 new widgets</span>
+                    <span>·</span>
+                    <span>Multi-select filters</span>
+                  </div>
+                  <a
+                    href="/frontend-design/POD_Manager_Dashboard_V2"
+                    className="btn btn-primary btn-sm"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open V2 ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div id="dashboard-header" className="ds-subsection" style={{ display: 'none' }} />
+
+            <DashboardShowcase />
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════
               ATOMS
           ══════════════════════════════════════════════════════════════ */}
           <section id="atoms" className="ds-section">
@@ -697,79 +770,6 @@ export default function DesignSystemPage() {
                 </footer>
               </div>
             </div>
-          </section>
-
-          {/* ══════════════════════════════════════════════════════════════
-              LEVEL 5 — Dashboard Pages
-          ══════════════════════════════════════════════════════════════ */}
-          <section id="dashboard-pages" className="ds-section">
-            <p className="ds-level-label">Level 5</p>
-            <h2 className="ds-section-title">Dashboard Pages</h2>
-            <p className="ds-section-desc">
-              Fully assembled operational dashboards composed from organisms, molecules, and atoms —
-              delivering rule-based pod intelligence for operations managers.
-            </p>
-
-            {/* Dashboard version cards */}
-            <div className="row g-4 mb-4">
-              <div className="col-md-6">
-                <div className="ds-dashboard-card">
-                  <div className="ds-dashboard-card__badge">V1</div>
-                  <h3 className="ds-dashboard-card__title">Pod Manager Dashboard V1</h3>
-                  <p className="ds-dashboard-card__desc">
-                    Operational command center for pod managers. Covers sticky header, filter bar,
-                    KPI scorecards, pod summary, pod health, workflow risk, priority work queue,
-                    and workload balance. Rule-based signals, read-only view.
-                  </p>
-                  <div className="ds-dashboard-card__meta">
-                    <span>8 sections</span>
-                    <span>·</span>
-                    <span>18 mock work items</span>
-                    <span>·</span>
-                    <span>7 pod members</span>
-                  </div>
-                  <a
-                    href="/frontend-design/POD_Manager_Dashboard_V1"
-                    className="btn btn-primary btn-sm"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Open V1 ↗
-                  </a>
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="ds-dashboard-card ds-dashboard-card--v2">
-                  <div className="ds-dashboard-card__badge ds-dashboard-card__badge--v2">V2</div>
-                  <h3 className="ds-dashboard-card__title">Pod Manager Dashboard V2</h3>
-                  <p className="ds-dashboard-card__desc">
-                    Analytics-first redesign based on the Figma V2 spec. Adds tasks by duration
-                    flag, category trend lines, open tasks per date, top task type table, pod
-                    workload distribution, and top requestors — with region/pod multi-select filters.
-                  </p>
-                  <div className="ds-dashboard-card__meta">
-                    <span>9 sections</span>
-                    <span>·</span>
-                    <span>7 new widgets</span>
-                    <span>·</span>
-                    <span>Multi-select filters</span>
-                  </div>
-                  <a
-                    href="/frontend-design/POD_Manager_Dashboard_V2"
-                    className="btn btn-primary btn-sm"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Open V2 ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div id="dashboard-header" className="ds-subsection" style={{ display: 'none' }} />
-
-            <DashboardShowcase />
           </section>
 
         </main>

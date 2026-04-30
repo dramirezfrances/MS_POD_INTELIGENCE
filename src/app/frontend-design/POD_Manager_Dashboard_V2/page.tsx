@@ -201,7 +201,7 @@ export default function PodManagerDashboardV2() {
         />
 
         {/* KPI row */}
-        <section className="ms-pod-section" id="v2-kpis" aria-label="KPI Scorecards">
+        <section className="ms-pod-section" id="v2-kpis" aria-label="KPI Scorecards" style={{ marginTop: '1.5rem' }}>
           <KpiScorecards
             tiles={V2_KPI_TILES}
             onTileClick={(id) =>

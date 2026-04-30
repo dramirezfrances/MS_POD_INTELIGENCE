@@ -68,7 +68,7 @@ export interface V2WorkItem {
 // ─── KPI Tiles ────────────────────────────────────────────────────────────────
 
 export const V2_KPI_TILES = [
-  { id: 'open',       label: 'Open Tasks',        value: 90,  delta: '8 vs prior 7d',   deltaDirection: 'down' as const, contextLabel: 'Above expected pod volume'         },
+  { id: 'open',       label: 'Open Tasks',        value: 90,  delta: '8 vs prior 7d',   deltaDirection: 'neutral' as const, contextLabel: 'Above expected pod volume'         },
   { id: 'completed',  label: 'Completed Tasks',   value: 64,  delta: '+5% vs prior 7d',  deltaDirection: 'up'   as const, contextLabel: 'Above target completion rate'      },
   { id: 'unassigned', label: 'Unassigned Tasks',  value: 17,  delta: '−6 vs prior 7d',   deltaDirection: 'down' as const, contextLabel: 'Requires immediate triage'         },
   { id: 'overdue',    label: 'Overdue Tasks',     value: 5,   delta: '−1 vs prior 7d',   deltaDirection: 'down' as const, contextLabel: 'Within acceptable threshold'       },

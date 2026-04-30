@@ -1,5 +1,20 @@
 const NAV = [
   {
+    level: 'Level 5',
+    section: 'Dashboard Pages',
+    href: '#dashboard-pages',
+    items: [
+      { label: 'Top Workflow Types',    href: '#dashboard-top-workflows' },
+      { label: 'Pod Summary Panel',    href: '#dashboard-summary' },
+      { label: 'Pod Health Widget',    href: '#dashboard-health' },
+      { label: 'Workflow Risk Widget', href: '#dashboard-risk' },
+      { label: 'Priority Work Queue',  href: '#dashboard-queue' },
+      { label: 'Workload Balance',     href: '#dashboard-balance' },
+      { label: 'Full Dashboard V1 ↗',  href: '/frontend-design/POD_Manager_Dashboard_V1' },
+      { label: 'Full Dashboard V2 ↗',  href: '/frontend-design/POD_Manager_Dashboard_V2' },
+    ],
+  },
+  {
     level: 'Level 1',
     section: 'Atoms',
     href: '#atoms',
@@ -48,21 +63,6 @@ const NAV = [
     href: '#templates',
     items: [
       { label: 'Wealth Dashboard', href: '#templates-dashboard' },
-    ],
-  },
-  {
-    level: 'Level 5',
-    section: 'Dashboard Pages',
-    href: '#dashboard-pages',
-    items: [
-      { label: 'Top Workflow Types',    href: '#dashboard-top-workflows' },
-      { label: 'Pod Summary Panel',    href: '#dashboard-summary' },
-      { label: 'Pod Health Widget',    href: '#dashboard-health' },
-      { label: 'Workflow Risk Widget', href: '#dashboard-risk' },
-      { label: 'Priority Work Queue',  href: '#dashboard-queue' },
-      { label: 'Workload Balance',     href: '#dashboard-balance' },
-      { label: 'Full Dashboard V1 ↗',  href: '/frontend-design/POD_Manager_Dashboard_V1' },
-      { label: 'Full Dashboard V2 ↗',  href: '/frontend-design/POD_Manager_Dashboard_V2' },
     ],
   },
 ]

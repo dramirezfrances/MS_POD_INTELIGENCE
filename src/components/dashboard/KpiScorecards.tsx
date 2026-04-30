@@ -6,9 +6,10 @@ interface KpiScorecardsProps {
 }
 
 const DELTA_ARROWS = {
-  up:   '▲',
-  down: '▼',
-  flat: '—',
+  up:      '▲',
+  down:    '▼',
+  flat:    '—',
+  neutral: '▼',
 }
 
 export function KpiScorecards({ tiles, onTileClick }: KpiScorecardsProps) {
